@@ -17,13 +17,5 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
-    path('home', Home2View.as_view(), name='home2'),
-    path('sections/<str:s>', SectionsView.as_view(), name='sections'),
-    path('inners/<str:d>', InnersView.as_view(), name='inners'),
-    path('products/<str:j>', ProductsView.as_view(), name="products"),
-    path('product/<int:pk>', ProductDetailsView.as_view(), name="product"),
-    path('wishlist', WishlistProductsView.as_view(), name="wishlist"),
-    path('shoppingcart', ShoppingCartView.as_view(), name="shoppingcart"),
-    path('orders', OrdersView.as_view(), name="orders"),
+    
 ]
