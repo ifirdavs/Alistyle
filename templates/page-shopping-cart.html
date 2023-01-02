@@ -20,97 +20,45 @@
 </tr>
 </thead>
 <tbody>
+{% for i in cart %}
 <tr>
 	<td>
 		<figure class="itemside">
-			<div class="aside"><img src="images/items/1.jpg" class="img-sm"></div>
+			<div class="aside"><img src="{{i.product.images.last.image.url}}" class="img-sm"></div>
 			<figcaption class="info">
-				<a href="#" class="title text-dark">Some name of item goes here nice</a>
-				<p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
+				<a href="#" class="title text-dark">{{i.product.name}}</a>
+				<p class="text-muted small">Size: XL, Color: blue, <br> Brand: {{i.product.brand}}</p>
 			</figcaption>
 		</figure>
 	</td>
 	<td> 
-		<select class="form-control">
-			<option>1</option>
-			<option>2</option>	
-			<option>3</option>	
-			<option>4</option>	
-		</select> 
+		<div class="input-group mb-3 input-spinner">
+			<div class="input-group-prepend">
+		  <a href="/shopcart/cart_plus/{{i.id}}"><button class="btn btn-light" type="button" id="button-plus"> + </button></a>
+			</div>
+			<input type="text" class="form-control" value="{{i.quantity}}">
+			<div class="input-group-append">
+		  <a href="/shopcart/cart_minus/{{i.id}}"><button class="btn btn-light" type="button" id="button-minus"> &minus; </button></a>
+			</div>
+			</div>
 	</td>
 	<td> 
 		<div class="price-wrap"> 
-			<var class="price">$1156.00</var> 
-			<small class="text-muted"> $315.20 each </small> 
+			<var class="price">${% widthratio i.product.price 1 i.quantity %}.00</var> 
+			<small class="text-muted"> ${{i.product.price}}.00 each </small> 
 		</div> <!-- price-wrap .// -->
 	</td>
 	<td class="text-right"> 
-	<a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-	<a href="" class="btn btn-light"> Remove</a>
+	<a data-original-title="Save to Wishlist" title="" href="/wishlist/add/{{i.id}}" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
+	<a href="/shopcart/delete/{{i.id}}" class="btn btn-light"> Remove</a>
 	</td>
 </tr>
-<tr>
-	<td>
-		<figure class="itemside">
-			<div class="aside"><img src="images/items/2.jpg" class="img-sm"></div>
-			<figcaption class="info">
-				<a href="#" class="title text-dark">Product name  goes here nice</a>
-				<p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
-			</figcaption>
-		</figure>
-	</td>
-	<td> 
-		<select class="form-control">
-			<option>1</option>
-			<option>2</option>	
-			<option>3</option>	
-			<option>4</option>	
-		</select> 
-	</td>
-	<td> 
-		<div class="price-wrap"> 
-			<var class="price">$149.97</var> 
-			<small  class="text-muted"> $75.00 each </small>  
-		</div> <!-- price-wrap .// -->
-	</td>
-	<td class="text-right"> 
-	<a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-	<a href="" class="btn btn-light btn-round"> Remove</a>
-	</td>
-</tr>
-<tr>
-	<td>
-		<figure class="itemside">
-			<div class="aside"><img src="images/items/3.jpg" class="img-sm"></div>
-			<figcaption class="info">
-				<a href="#" class="title text-dark">Another name of some product goes just here as a demo text </a>
-				<p class="small text-muted">Size: XL, Color: blue,  Brand: Tissot</p>
-			</figcaption>
-		</figure>
-	</td>
-	<td> 
-		<select class="form-control">
-			<option>1</option>
-			<option>2</option>	
-			<option>3</option>	
-		</select> 
-	</td>
-	<td> 
-		<div class="price-wrap"> 
-			<var class="price">$98.00</var> 
-			<small class="text-muted"> $578.00 each</small> 
-		</div> <!-- price-wrap .// -->
-	</td>
-	<td class="text-right"> 
-		<a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-		<a href="" class="btn btn-light btn-round"> Remove</a>
-	</td>
-</tr>
+{% endfor %}
 </tbody>
 </table>
 
 <div class="card-body border-top">
-	<a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+	<a href="/addneworder" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
 	<a href="#" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
 </div>	
 </div> <!-- card.// -->
@@ -140,15 +88,15 @@
 			<div class="card-body">
 					<dl class="dlist-align">
 					  <dt>Total price:</dt>
-					  <dd class="text-right">USD 568</dd>
+					  <dd class="text-right">USD {{total}}.00</dd>
 					</dl>
 					<dl class="dlist-align">
 					  <dt>Discount:</dt>
-					  <dd class="text-right">USD 658</dd>
+					  <dd class="text-right">USD {{discount}}.00</dd>
 					</dl>
 					<dl class="dlist-align">
 					  <dt>Total:</dt>
-					  <dd class="text-right  h5"><strong>$1,650</strong></dd>
+					  <dd class="text-right  h5"><strong>${{t}}</strong></dd>
 					</dl>
 					<hr>
 					<p class="text-center mb-3">

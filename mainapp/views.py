@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views import View
 from.models import *
-from ordersapp.models import *
+
 
 # Create your views here.
 
@@ -50,23 +50,3 @@ class ProductDetailsView(View):
         }
         return render(request, 'page-detail-product.html', data)
 
-class WishlistProductsView(View):
-    def get(self, request):
-        data = {
-            'list': Wishlist.objects.filter(profile__user=request.user)
-        }
-        return render(request, 'page-profile-wishlist.html', data)
-
-class ShoppingCartView(View):
-    def get(self, request):
-        data = {
-            
-        }
-        return render(request, 'page-shopping-cart.html', data)
-
-class OrdersView(View):
-    def get(self, request):
-        data = {
-            
-        }
-        return render(request, 'page-profile-orders.html', data)

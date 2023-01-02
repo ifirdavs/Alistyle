@@ -16,7 +16,7 @@
 			    <h4 class="card-title"><a href="{% url 'inners' i.name|lower %}">{{i.name}}</a></h4>
 			    <ul class="list-menu">
 					{% for k in i.inners.all|slice:":4" %}
-			    		<li><a href="{% url 'products' i.name %}">{{k.name}}</a></li>
+			    		<li><a href="{% url 'products' k.name %}">{{k.name}}</a></li>
 					{% endfor %}
 			    </ul>
 			  </div>

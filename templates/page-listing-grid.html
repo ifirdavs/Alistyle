@@ -104,9 +104,7 @@
 		<figure class="card card-product-grid">
 			<div class="img-wrap"> 
 				<span class="badge badge-danger"> NEW </span>
-				{% for k in i.images.all|slice:":1" %}
-				<img src="{{k.image.url}}">
-				{% endfor %}
+				<img src="{{i.images.all.first.image.url}}">
 			</div> <!-- img-wrap.// -->
 			<figcaption class="info-wrap">
 					<a href="{% url 'product' i.id %}" class="title mb-2">{{i.name}}</a>
